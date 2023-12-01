@@ -26,7 +26,7 @@ Next, initialize your shell with
 C:\Users\<you>\AppData\Local\micromamba\micromamba.exe shell init -s powershell -p ~\micromamba
 ```
 
-Create a file in your home directory (`C:\Users\<you>` for Windows, `/home/<your>` for Linux) named `.mambarc`.
+Create a file in your home directory (`C:\Users\<you>`) named `.mambarc`.
 
 Paste the following contents into it:
 
@@ -59,9 +59,20 @@ Next, initialize your shell with
 ./bin/micromamba shell init -s bash -p ~/micromamba
 ```
 
+Create a file in your home directory (`/home/<your>`) named `.mambarc`.
+
+Paste the following contents into it:
+
+```yaml
+channels:
+  - defaults
+  - conda-forge
+update_dependencies: true
+```
+
 Confirm that `micromamba` was installed successfully with
 
-```powershell
+```shell
 micromamba info
 ```
 
