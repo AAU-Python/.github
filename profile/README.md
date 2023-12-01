@@ -1,4 +1,4 @@
-# Introduction
+# 1. Introduction
 
 This is an introduction to getting started with Python.
 
@@ -6,11 +6,27 @@ Contact: <majp@ramboll.com>
 
 Please don't hestitate to contact me if something doesn't work. I wrote this off the top of my head, so I probably missed something...
 
-## Installing a package manager for Python
+- [1. Introduction](#1-introduction)
+  - [1.1. Installing a package manager for Python](#11-installing-a-package-manager-for-python)
+    - [1.1.1. Windows](#111-windows)
+    - [1.1.2. Linux](#112-linux)
+  - [1.2. Create your first environment](#12-create-your-first-environment)
+  - [1.3. Installing a code editor](#13-installing-a-code-editor)
+    - [1.3.1. Windows](#131-windows)
+    - [1.3.2. Linux](#132-linux)
+    - [1.3.3. Configure VS Code](#133-configure-vs-code)
+    - [1.3.4. User configuration](#134-user-configuration)
+      - [1.3.4.1. Extensions](#1341-extensions)
+  - [1.4. Installing a version control system](#14-installing-a-version-control-system)
+    - [1.4.1. Windows](#141-windows)
+    - [1.4.2. Linux](#142-linux)
+    - [1.4.3. Configure git](#143-configure-git)
+
+## 1.1. Installing a package manager for Python
 
 We will be using the [`micromamba`](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html) package manager. It is a standalone package manager based on [`conda`](https://docs.conda.io/en/latest/).
 
-### Windows
+### 1.1.1. Windows
 
 Open a `PowerShell` terminal and run
 
@@ -45,7 +61,7 @@ micromamba info
 
 This should list some information about your micromamba installation. Done!
 
-### Linux
+### 1.1.2. Linux
 
 Open your favourite terminal and run
 
@@ -78,7 +94,7 @@ micromamba info
 
 This should list some information about your micromamba installation. Done!
 
-## Create your first environment
+## 1.2. Create your first environment
 
 The Python programming language uses so-called *packages* that contain reusable code (functions, classes, modules). For example, the `numpy` package provides functionality for fast mathematical operations, and the `polars` package enables easy and fast handling of tabular data.
 
@@ -98,13 +114,13 @@ After you've created an environment, you need to *activate* it. Python only has 
 micromamba activate aau
 ```
 
-## Installing a code editor
+## 1.3. Installing a code editor
 
 We're now ready to install a code editor. The code editor is the programme in which you write your code. It can provide you with many tools that help you write better code.
 
 We will be use Microsoft Visual Studio Code (VS Code for short). This editor has a rich extension ecosystem, and you can find extensions for pretty much anything, including writing and running Python code!
 
-### Windows
+### 1.3.1. Windows
 
 > Note: You might need to activate `winget`. To do so, install the ["App Installer"](https://apps.microsoft.com/detail/app-installer/9NBLGGH4NNS1?hl=en-US&gl=US) package from Microsoft Store.
 
@@ -120,15 +136,15 @@ Now you should be able to open VS Code by running
 code
 ```
 
-### Linux
+### 1.3.2. Linux
 
 TODO
 
-### Configure VS Code
+### 1.3.3. Configure VS Code
 
 We'll need to configure a few things and install some extensions.
 
-### User configuration
+### 1.3.4. User configuration
 
 Your user (system-wide) configuration for VS Code is stored as a JSON file in `$Env:APPDATA\Code\User\settings.json`.
 
@@ -255,7 +271,7 @@ and then paste the following JSON into the file:
 }
 ```
 
-#### Extensions
+#### 1.3.4.1. Extensions
 
 There are many extensions available for VS Code. We'll install a few so we can more easily work with Python and enhance the experience.
 
@@ -273,16 +289,16 @@ code --install-extension mhutchie.git-graph
 code --install-extension vscode-icons-team.vscode-icons
 ```
 
-## Installing a version control system
+## 1.4. Installing a version control system
 
 It is extremely beneficial to put your code under version control. For this, we use [`git`](https://git-scm.com/). With version control, you can record the change history of your code and
 
-* See what changes were made
-* When those changes were made
-* Who made the changes
-* Go back in history in case you made mistakes or want to run an older version of your code
+- See what changes were made
+- When those changes were made
+- Who made the changes
+- Go back in history in case you made mistakes or want to run an older version of your code
 
-### Windows
+### 1.4.1. Windows
 
 To install `git`, execute the following in `PowerShell`:
 
@@ -290,11 +306,11 @@ To install `git`, execute the following in `PowerShell`:
 winget install --id=Git.Git  -e
 ```
 
-### Linux
+### 1.4.2. Linux
 
 Already installed by default.
 
-### Configure git
+### 1.4.3. Configure git
 
 Let's configure our `git` installation.
 
