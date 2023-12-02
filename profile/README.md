@@ -9,8 +9,8 @@ Please don't hestitate to contact me if something doesn't work. I wrote this off
 - [1. Introduction](#1-introduction)
   - [1.1. Installing a package manager for Python](#11-installing-a-package-manager-for-python)
     - [1.1.1. Windows](#111-windows)
-    - [1.1.2. Linux](#112-linux)
-  - [1.2. Create your first environment](#12-create-your-first-environment)
+    - [1.1.2. Linux/MacOS](#112-linuxmacos)
+  - [1.2. Create an environment](#12-create-an-environment)
   - [1.3. Installing a code editor](#13-installing-a-code-editor)
     - [1.3.1. Windows](#131-windows)
     - [1.3.2. Linux](#132-linux)
@@ -34,17 +34,35 @@ Open a `PowerShell` terminal and run
 Invoke-Expression ((Invoke-WebRequest -Uri https://micro.mamba.pm/install.ps1).Content)
 ```
 
-This will place `micromamba.exe` at `C:\Users\<you>\AppData\Local\micromamba\micromamba.exe`.
+This will place `micromamba.exe` at `$Env:LocalAppData\micromamba\micromamba.exe`.
+
+> **NOTE**: `$Env:LocalAppData` is a variable that contains the path to `AppData\Local`. Usually this is located under `C:\Users\<you>\AppData\Local`, where `\Users` depends on the system language and `<you>` is you user name. You can see the value of the path if you run
+>
+> ```powershell
+> echo $Env:LocalAppData
+> ```
 
 Next, initialize your shell with
 
 ```powershell
-C:\Users\<you>\AppData\Local\micromamba\micromamba.exe shell init -s powershell -p ~\micromamba
+$Env:AppData\micromamba\micromamba.exe shell init -s powershell -p ~\micromamba
 ```
 
-Create a file in your home directory (`C:\Users\<you>`) named `.mambarc`.
+> **NOTE:** Depending one the system's security settings, you might get a permission error later on. Allow unsigned script execution by opening PowerShell as administrator (right click on PowerShell, select "Run as administrator") and executing the following command
+>
+> ```powershell
+> set-executionpolicy remotesigned
+>```
 
-Paste the following contents into it:
+Create a text file in your home directory named `.mambarc`.
+
+> **NOTE**: The home directory is the directory defined in the `$Env:Home` variable. You can see the value of this variable with
+>
+> ```powershell
+> echo $Env:Home
+> ```
+
+Paste the following contents into the `.mambarc` file:
 
 ```yaml
 channels:
@@ -53,7 +71,7 @@ channels:
 update_dependencies: true
 ```
 
-Confirm that `micromamba` was installed successfully with
+Close the PowerShell terminal, and open a new one. Then, confirm that `micromamba` was installed successfully with
 
 ```powershell
 micromamba info
@@ -61,7 +79,7 @@ micromamba info
 
 This should list some information about your micromamba installation. Done!
 
-### 1.1.2. Linux
+### 1.1.2. Linux/MacOS
 
 Open your favourite terminal and run
 
@@ -75,7 +93,13 @@ Next, initialize your shell with
 ./bin/micromamba shell init -s bash -p ~/micromamba
 ```
 
-Create a file in your home directory (`/home/<your>`) named `.mambarc`.
+Create a text file in your home directory named `.mambarc`.
+
+> **NOTE:** The home directory is defined in the `$HOME` variable.You can see the value of this variable with
+>
+> ```bash
+> echo $HOME
+> ```
 
 Paste the following contents into it:
 
@@ -86,7 +110,7 @@ channels:
 update_dependencies: true
 ```
 
-Confirm that `micromamba` was installed successfully with
+Close the terminal and open a new one. Then, confirm that `micromamba` was installed successfully with
 
 ```shell
 micromamba info
@@ -94,24 +118,32 @@ micromamba info
 
 This should list some information about your micromamba installation. Done!
 
-## 1.2. Create your first environment
+## 1.2. Create an environment
 
 The Python programming language uses so-called *packages* that contain reusable code (functions, classes, modules). For example, the `numpy` package provides functionality for fast mathematical operations, and the `polars` package enables easy and fast handling of tabular data.
 
 An *environment* refers to the set of packages that the Python interpreter has access to. The Python interpreter is the process that executes your Python code.
 
-Let's create an environment called `aau`. Open your terminal (`PowerShell` on Windows, `bash` on Linux) and run
+There are several ways of creating environments. Often, you will have an `environment.yml` file which specified what packages to install and what name the environment has.
+
+You can create an environment from a file with
 
 ```shell
-micromamba create --name aau python numpy polars
+micromamba env create -f <path to environment.yml>
 ```
 
-The `--name` argument, which has the value `aau`, is the name for your environment. The values after that are the packages that will be installed in that environment.
+where you replace `<path to environment.yml>` with the actual path to the file. During environment creation you will get a `[Y/n]` prompt. To answer the prompt, type out your answer (in this case `Y`) and hit `<kbd>Enter</kbd>`
 
 After you've created an environment, you need to *activate* it. Python only has access to the packages in the currently active environment. You do this with
 
 ```shell
-micromamba activate aau
+micromamba activate <environment name>
+```
+
+where you replace `<environment name>` with the environment name. The name is listed in the `name:` section in `environment.yml`, like so:
+
+```yaml
+name: my_environment
 ```
 
 ## 1.3. Installing a code editor
@@ -127,14 +159,24 @@ We will be use Microsoft Visual Studio Code (VS Code for short). This editor has
 To install VS Code on Windows, execute the following in `PowerShell`:
 
 ```powershell
-winget install -e --id Microsoft.VisualStudioCode --override '/mergetasks="addcontextmenufiles,addcontextmenufolders,addtopath"'
+winget install -e --id Microsoft.VisualStudioCode --override
 ```
 
-Now you should be able to open VS Code by running
+If an installer opens up, make sure to select the `Add code to PATH` option if not already selected.
+
+Close PowerShell and open a new PowerShell temrinal for changes to take effect. Confirm that VS Code was succesfully installed by running
 
 ```powershell
-code
+code --version
 ```
+
+> **NOTE**: If this didn't work, you can manually add VS Code to your path variable with this command:
+>
+> ```powershell
+> $Env:Path += ;"$Env:LocalAppdata\Programs\Microsoft VS Code\"
+> ```
+>
+> Close PowerShell, open a new PowerShell terminal, and try to run `code --version` again.
 
 ### 1.3.2. Linux
 
@@ -314,12 +356,19 @@ Already installed by default.
 
 Let's configure our `git` installation.
 
-Set your email and username with
+Set your username with
 
 ```shell
 git config --global user.name "your name here"
+```
+
+where you replace `your name here` with your username. It can be whatever name you like. Set your email with
+
+```shell
 git config --global user.email my.email@domain.com
 ```
+
+where you replace `my.email@domain.com` with your actual email address.
 
 Set the default editor for `git` to VS Code with
 
