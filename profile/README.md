@@ -349,9 +349,6 @@ code --install-extension eamodio.gitlens \
 && code --install-extension ms-toolsai.jupyter
 ```
 
-echo "foo" \
-&& echo "bar"
-
 ## 1.4. Installing a version control system
 
 It is extremely beneficial to put your code under version control. For this, we use [`git`](https://git-scm.com/). With version control, you can record the change history of your code and
