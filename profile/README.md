@@ -132,7 +132,7 @@ You can create an environment from a file with
 micromamba env create -f <path to environment.yml>
 ```
 
-where you replace `<path to environment.yml>` with the actual path to the file. During environment creation you will get a `[Y/n]` prompt. To answer the prompt, type out your answer (in this case `Y`) and hit `<kbd>Enter</kbd>`
+where you replace `<path to environment.yml>` with the actual path to the file. During environment creation you will get a `[Y/n]` prompt. To answer the prompt, type out your answer (in this case `Y`) and hit `Enter`
 
 After you've created an environment, you need to *activate* it. Python only has access to the packages in the currently active environment. You do this with
 
@@ -319,17 +319,38 @@ There are many extensions available for VS Code. We'll install a few so we can m
 
 You can find the extension manager in the sidebar on the left-hand side of the window. The icon is four little squares. Here, you can search for extensions. You can run the code below in your terminal to install some recommended extensions:
 
-```shell
-code --install-extension eamodio.gitlens
-code --install-extension ms-python.python
-code --install-extension ms-python.vscode-pylance
-code --install-extension ms-python.black-formatter
-code --install-extension ms-python.flake8
-code --install-extension ms-python.isort
-code --install-extension ms-python.pylint
-code --install-extension mhutchie.git-graph
-code --install-extension vscode-icons-team.vscode-icons
+For Windows:
+
+```powershell
+code --install-extension eamodio.gitlens `
+&& code --install-extension ms-python.python `
+&& code --install-extension ms-python.vscode-pylance `
+&& code --install-extension ms-python.black-formatter `
+&& code --install-extension ms-python.flake8 `
+&& code --install-extension ms-python.isort `
+&& code --install-extension ms-python.pylint `
+&& code --install-extension mhutchie.git-graph `
+&& code --install-extension vscode-icons-team.vscode-icons `
+&& code --install-extension ms-toolsai.jupyter
 ```
+
+For Linux/MacOS:
+
+```bash
+code --install-extension eamodio.gitlens \
+&& code --install-extension ms-python.python \
+&& code --install-extension ms-python.vscode-pylance \
+&& code --install-extension ms-python.black-formatter \
+&& code --install-extension ms-python.flake8 \
+&& code --install-extension ms-python.isort \
+&& code --install-extension ms-python.pylint \
+&& code --install-extension mhutchie.git-graph \
+&& code --install-extension vscode-icons-team.vscode-icons \
+&& code --install-extension ms-toolsai.jupyter
+```
+
+echo "foo" \
+&& echo "bar"
 
 ## 1.4. Installing a version control system
 
