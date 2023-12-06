@@ -173,7 +173,7 @@ code --version
 > **NOTE**: If this didn't work, you can manually add VS Code to your path variable with this command:
 >
 > ```powershell
-> $Env:Path += ;"$Env:LocalAppdata\Programs\Microsoft VS Code\"
+> $Env:Path += ";$Env:LocalAppdata\Programs\Microsoft VS Code\"
 > ```
 >
 > Close PowerShell, open a new PowerShell terminal, and try to run `code --version` again.
